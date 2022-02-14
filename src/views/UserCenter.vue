@@ -138,7 +138,7 @@
           <Col span="8">
             <Card style="width:100%;height:400px;" dis-hover :bordered="false">
               <p slot="title"><Icon type="ios-cloud" />今日天气</p>
-              <!-- 点滴日记 -->
+              <!-- HotWater Dairy -->
               <div id="weather-view-he"></div>
 
               <remote-js></remote-js>
