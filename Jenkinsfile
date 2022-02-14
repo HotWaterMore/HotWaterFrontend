@@ -7,20 +7,20 @@ node{
 
     stage('install'){
 //         updateGitlabCommitStatus name: 'jenkins', state: 'running'
-        sh label: 'build', returnStatus: true, script: 'npm install'
-        echo '=== npm install end ==='
+        sh label: 'build', returnStatus: true, script: 'cnpm install'
+        echo '=== cnpm install end ==='
     }
 
     stage('build'){
 //         updateGitlabCommitStatus name: 'jenkins', state: 'running'
-        sh label: 'build', returnStatus: true, script: 'npm run build'
-        echo '=== npm run build end ==='
+        sh label: 'build', returnStatus: true, script: 'cnpm run build'
+        echo '=== cnpm run build end ==='
     }
 
     stage('zip'){
 //         updateGitlabCommitStatus name: 'jenkins', state: 'running'
         sh label: 'build', returnStatus: true, script: 'tar -zcvf HotWaterFrontend.tar.gz dist'
-        echo '=== npm run build end ==='
+        echo '=== cnpm run build end ==='
     }
 
 // 下面这个是远程部署到非jenkins所在的服务器上，本项目在本机部署
