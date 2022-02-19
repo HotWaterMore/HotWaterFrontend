@@ -178,9 +178,9 @@ export default {
     //邮箱验证
     const isHasEmail = (rule, value, callback) => {
       this.request
-        .httpGet(this.requestUrl.selectMail, { email: value })
+        .httpGet(this.requestUrl.selectMail, { username: value })
         .then(res => {
-          if (res.code === 402) {
+          if (res.data.result === true) {
             callback(new Error("此邮箱已被注册"));
           }
           callback();
@@ -270,8 +270,8 @@ export default {
         if (valid) {
           this.request
             .httpPost(this.requestUrl.userReg, {
-              email: this.formValidate.mail,
-              userPwd: this.formValidate.password
+              username: this.formValidate.mail,
+              password: this.formValidate.password
             })
             .then(res => {
               this.$Message.success("注册成功!");
@@ -288,49 +288,37 @@ export default {
     loginHandleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
-          if(this.loginFoemValidate.mail == "123456@qq.com" && this.loginFoemValidate.password == "123456") {
-            this.$Message.success("登录成功!");
-            this.$router.push({ path: "/index" });
-            localStorage.setItem("token", 1);
-            localStorage.setItem("userInfo", "123");
-            // localStorage.setItem("token", res.token);
-            // localStorage.setItem("userInfo",JSON.stringify(res.userInfo[0]));
-            // let avatar=process.env.VUE_APP_BASE_API+"/images/"+res.userInfo[0].avatar;
-            // this.$store.commit('setAvatar',avatar);
-          }else {
-            this.$Message.error("邮箱或密码错误!");
-          }
           
-          
-          // this.request
-          //   .httpPost(this.requestUrl.userLogin, {
-          //     email: this.loginFoemValidate.mail,
-          //     userPwd: this.loginFoemValidate.password
-          //   })
-          //   .then(res => {
-          //     if (res.code === 200) {
-          //       this.$Message.success("登录成功!");
-          //       this.$router.push({ path: "/index" });
-          //       //保存token
-          //       localStorage.setItem("token", res.token);
-          //       //保存用户信息
-          //       localStorage.setItem("userInfo",JSON.stringify(res.userInfo[0]));
-          //       let avatar=process.env.VUE_APP_BASE_API+"/images/"+res.userInfo[0].avatar;
-          //       //设置头像
-          //       this.$store.commit('setAvatar',avatar);
-          //       // //保存用户邮箱
-          //       // localStorage.setItem("user_email", res.userInfo[0].email);
-          //       // //保存用户id
-          //       // localStorage.setItem("userId",res.userInfo[0].userId);
-          //       // //保存用户名
-          //       // localStorage.setItem("userName",res.userInfo[0].userName);
-          //     } else {
-          //       this.$Message.error("邮箱或密码错误!");
-          //     }
-          //   })
-          //   .catch(err => {
-          //      throw err;
-          //   });
+          this.request
+            .httpPost(this.requestUrl.userLogin, {
+              username: this.loginFoemValidate.mail,
+              password: this.loginFoemValidate.password
+            })
+            .then(res => {
+              console.log(res);
+              if (res.status === 200) {
+                this.$Message.success("登录成功!");
+                this.$router.push({ path: "/index" });
+                //保存token
+                localStorage.setItem("token", "1");
+                //保存用户信息
+                localStorage.setItem("userInfo","1");
+                //let avatar=process.env.VUE_APP_BASE_API+"/images/"+res.userInfo[0].avatar;
+                //设置头像
+                //this.$store.commit('setAvatar',avatar);
+                // //保存用户邮箱
+                localStorage.setItem("user_email", res.data.result.username);
+                // //保存用户id
+                localStorage.setItem("userId",res.data.result.id);
+                // //保存用户名
+                localStorage.setItem("userName",res.data.result.username);
+              } else {
+                this.$Message.error("邮箱或密码错误!");
+              }
+            })
+            .catch(err => {
+               throw err;
+            });
         } else {
           this.$Message.error("登录信息填写错误");
         }

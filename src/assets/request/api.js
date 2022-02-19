@@ -2,8 +2,11 @@ import axios from 'axios'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import router from '../../router'
+
 //  axios 配置
+//超时时间
 axios.defaults.timeout = 10000
+//请求头
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8,'
 // axios.defaults.baseURL =process.env.NODE_ENV === 'development' ? 'http://localhost:8081' : 'http://localhost:8081';
 // 配置数据请求的基础url
@@ -50,7 +53,7 @@ function fetch (url, params) {
   return new Promise((resolve, reject) => {
     axios.post(url, params)
       .then(response => {
-        resolve(response.data)
+        resolve(response)
       }, err => {
         reject(new Error(err))
       })
@@ -64,7 +67,7 @@ function fetchGet (url, params) {
   return new Promise((resolve, reject) => {
     axios.get(url, params)
       .then(response => {
-        resolve(response.data)
+        resolve(response)
       }, err => {
         reject(new Error(err))
       })
@@ -78,7 +81,7 @@ function fetchPut (url, params) {
   return new Promise((resolve, reject) => {
     axios.put(url, params)
       .then(response => {
-        resolve(response.data)
+        resolve(response)
       }, err => {
         reject(new Error(err))
       })
@@ -92,7 +95,7 @@ function fetchDelete (url, params) {
   return new Promise((resolve, reject) => {
     axios.delete(url, params)
       .then(response => {
-        resolve(response.data)
+        resolve(response)
       }, err => {
         reject(new Error(err))
       })
