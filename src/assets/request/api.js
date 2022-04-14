@@ -2,15 +2,12 @@ import axios from 'axios'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import router from '../../router'
-
 //  axios 配置
-//超时时间
 axios.defaults.timeout = 10000
-//请求头
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8,'
 // axios.defaults.baseURL =process.env.NODE_ENV === 'development' ? 'http://localhost:8081' : 'http://localhost:8081';
 // 配置数据请求的基础url
-axios.defaults.baseURL =process.env.VUE_APP_BASE_API; 
+axios.defaults.baseURL =process.env.VUE_APP_BASE_API;
 axios.defaults.withCredentials = false;
 const SUCCESS = 200 // 成功时返回的code码，根据项目的不同和后台一致规定code码，此项目使用'200'
 
@@ -27,7 +24,7 @@ axios.interceptors.request.use((config) => {
 })
 //返回状态判断
 axios.interceptors.response.use((res) => {
-  console.log(res)
+  // console.log(res)
   if (res.status ===SUCCESS) {
     // if(res.data.code==408){
     //   iView.Message.error(res.data.msg);
@@ -37,23 +34,28 @@ axios.interceptors.response.use((res) => {
     return Promise.resolve(res)
   }
   else{
-    
+
     return Promise.reject(new Error(res.status))
   }
-  
+
 }, (error) => {
   // console.log('error=>', error)
-    iView.Message.error('登录过期，请重新登录');
-    router.push({ path: "/" });
+  iView.Message.error('未知错误');
+  //   iView.Message.error('登录过期，请重新登录');
+    // router.push({ path: "/" });
     localStorage.clear();
   return Promise.reject(new Error(error))
 })
- 
+
+// getUser
+//{
+// "id" : xxx,
+// }
 function fetch (url, params) {
   return new Promise((resolve, reject) => {
     axios.post(url, params)
       .then(response => {
-        resolve(response)
+        resolve(response.data)
       }, err => {
         reject(new Error(err))
       })
@@ -62,12 +64,13 @@ function fetch (url, params) {
       })
   })
 }
- 
+
+ // getUser?id=xx
 function fetchGet (url, params) {
   return new Promise((resolve, reject) => {
     axios.get(url, params)
       .then(response => {
-        resolve(response)
+        resolve(response.data)
       }, err => {
         reject(new Error(err))
       })
@@ -76,12 +79,12 @@ function fetchGet (url, params) {
       })
   })
 }
- 
+
 function fetchPut (url, params) {
   return new Promise((resolve, reject) => {
     axios.put(url, params)
       .then(response => {
-        resolve(response)
+        resolve(response.data)
       }, err => {
         reject(new Error(err))
       })
@@ -90,12 +93,12 @@ function fetchPut (url, params) {
       })
   })
 }
- 
+
 function fetchDelete (url, params) {
   return new Promise((resolve, reject) => {
     axios.delete(url, params)
       .then(response => {
-        resolve(response)
+        resolve(response.data)
       }, err => {
         reject(new Error(err))
       })
@@ -104,7 +107,7 @@ function fetchDelete (url, params) {
       })
   })
 }
- 
+
 export default {
   httpGet (url, getparams) {
     return fetchGet(url, { params: getparams })
@@ -122,4 +125,3 @@ export default {
 
 
 
- 

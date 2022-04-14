@@ -20,7 +20,6 @@ const compress = new CompressionWebpackPlugin({
 })
 module.exports = {
   devServer: {
-    port: 8001,
     before(app, server) {
       app.get(/.*.(js)$/, (req, res, next) => {
         req.url = req.url + '.gz';

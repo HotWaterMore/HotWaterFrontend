@@ -9,11 +9,8 @@ export default new Vuex.Store({
   },
   mutations: {
    setAvatar(state,url){
-    // state.avatar=url;
-    // sessionStorage.setItem('avatar',url);
-    state.avatar="https://alifei03.cfp.cn/creative/vcg/800/version23/VCG41490031879.jpg";
-    sessionStorage.setItem('avatar',"https://alifei03.cfp.cn/creative/vcg/800/version23/VCG41490031879.jpg");
-
+    state.avatar=url;
+    sessionStorage.setItem('avatar',url);
    }
   },
   getters:{

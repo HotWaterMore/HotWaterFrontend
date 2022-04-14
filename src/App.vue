@@ -19,27 +19,27 @@ export default {
     var hour = now.getHours();
     if (hour < 19) {
       document
-        .getElementsByTagName("body")[0]
-        .setAttribute("class", "page-login page-login-day");
+          .getElementsByTagName("body")[0]
+          .setAttribute("class", "page-login page-login-day");
     } else {
       document
-        .getElementsByTagName("body")[0]
-        .setAttribute("class", "page-login page-login-night");
+          .getElementsByTagName("body")[0]
+          .setAttribute("class", "page-login page-login-night");
     }
     //检测设备重定向
     var url = window.location.pathname;
     var wapurl = "http://wap.oneint.cn" + url;
 
     if (
-      /AppleWebKit.*Mobile/i.test(navigator.userAgent) ||
-      /MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(
-        navigator.userAgent
-      )
+        /AppleWebKit.*Mobile/i.test(navigator.userAgent) ||
+        /MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(
+            navigator.userAgent
+        )
     ) {
       if (window.location.href.indexOf("?mobile") < 0) {
         try {
           if (
-            /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)
+              /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)
           ) {
             window.location.href = wapurl;
           } else {
@@ -55,7 +55,7 @@ export default {
   // }
 };
 </script>
- 
+
 <style >
 #app {
   height: 100%;

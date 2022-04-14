@@ -49,12 +49,12 @@
             <!-- 更新记录 -->
             <!-- modal start-->
             <div
-              class="modal fade qrcode"
-              id="myModal"
-              tabindex="-1"
-              role="dialog"
-              aria-labelledby="myModalLabel"
-              aria-hidden="true"
+                class="modal fade qrcode"
+                id="myModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="myModalLabel"
+                aria-hidden="true"
             >
               <div class="modal-dialog">
                 <div class="modal-content" style="margin-top:0px;">
@@ -139,7 +139,7 @@ body {
 <style scoped>
 .aboutUsWrap {
   font-family: Microsoft YaHei, "宋体", Tahoma, Helvetica, Arial, "\5b8b\4f53",
-    sans-serif;
+  sans-serif;
   width: 100%;
   top: 15%;
   position: absolute;
@@ -191,7 +191,7 @@ a:focus {
 .aboutUsWrap .intro .content h4 {
   box-sizing: border-box;
   font-family: "Microsoft YaHei", 宋体, Tahoma, Helvetica, Arial, 宋体,
-    sans-serif;
+  sans-serif;
   font-weight: 500;
   line-height: 1.1;
   color: rgb(54, 63, 69);
@@ -207,7 +207,7 @@ a:focus {
   margin-bottom: 10px;
   color: rgb(54, 63, 69);
   font-family: "Microsoft YaHei", 宋体, Tahoma, Helvetica, Arial, 宋体,
-    sans-serif;
+  sans-serif;
   font-size: 14px;
   white-space: normal;
   background-color: rgba(255, 255, 255, 0.901961);

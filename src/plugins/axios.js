@@ -3,9 +3,6 @@
 import Vue from 'vue';
 import axios from "axios";
 
- 
-
-
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;

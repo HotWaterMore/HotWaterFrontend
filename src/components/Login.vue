@@ -2,27 +2,27 @@
   <div>
     <Header></Header>
     <!--主体start-->
-    
+
     <div class="loginContentWrap">
       <div class="container">
         <div class="row">
           <div
-            class="col-xs-12 col-sm-5 col-sm-offset-7 col-lg-4 col-lg-offset-8"
+              class="col-xs-12 col-sm-5 col-sm-offset-7 col-lg-4 col-lg-offset-8"
           >
             <div class="user_login_reg_box">
               <ul class="nav nav-tabs">
                 <li role="presentation" class="col-xs-6 active">
                   <a
-                    href="#"
-                    data-target="#tab-item-1"
-                    data-toggle="tab"
-                    class="active"
-                    >用户登录</a
+                      href="#"
+                      data-target="#tab-item-1"
+                      data-toggle="tab"
+                      class="active"
+                  >用户登录</a
                   >
                 </li>
                 <li role="presentation" class="col-xs-6">
                   <a href="#" data-target="#tab-item-2" data-toggle="tab"
-                    >用户注册</a
+                  >用户注册</a
                   >
                 </li>
               </ul>
@@ -30,16 +30,16 @@
                 <!-- 登录 -->
                 <div class="tab-pane active" id="tab-item-1">
                   <Form
-                    ref="loginFoemValidate"
-                    :model="loginFoemValidate"
-                    :rules="loginRuleValidate">
+                      ref="loginFoemValidate"
+                      :model="loginFoemValidate"
+                      :rules="loginRuleValidate">
                     <div class="form">
                       <div class="form-group">
                         <FormItem prop="mail">
                           <Input
-                            placeholder="电子邮件"
-                            size="large"
-                            v-model="loginFoemValidate.mail"
+                              placeholder="电子邮件"
+                              size="large"
+                              v-model="loginFoemValidate.mail"
                           >
                             <Icon type="ios-at-outline" slot="prepend"></Icon>
                           </Input>
@@ -49,11 +49,11 @@
                       <div class="form-group">
                         <FormItem prop="password">
                           <Input
-                            type="password"
-                            placeholder="您的密码"
-                            size="large"
-                            v-model="loginFoemValidate.password"
-                            @on-enter="loginHandleSubmit('loginFoemValidate')"
+                              type="password"
+                              placeholder="您的密码"
+                              size="large"
+                              v-model="loginFoemValidate.password"
+                              @on-enter="loginHandleSubmit('loginFoemValidate')"
                           >
                             <Icon type="ios-lock-outline" slot="prepend"></Icon>
                           </Input>
@@ -61,9 +61,9 @@
                       </div>
                       <div class="form-group">
                         <Button
-                          class="btn btn-orange"
-                          @click="loginHandleSubmit('loginFoemValidate')"
-                          >立 即 登 录</Button
+                            class="btn btn-orange"
+                            @click="loginHandleSubmit('loginFoemValidate')"
+                        >立 即 登 录</Button
                         >
                       </div>
                     </div>
@@ -72,17 +72,17 @@
                 <!-- 注册 -->
                 <div class="tab-pane" id="tab-item-2">
                   <Form
-                    ref="formValidate"
-                    :model="formValidate"
-                    :rules="ruleValidate"
+                      ref="formValidate"
+                      :model="formValidate"
+                      :rules="ruleValidate"
                   >
                     <div class="form">
                       <div class="form-group">
                         <FormItem prop="mail">
                           <Input
-                            placeholder="电子邮件"
-                            size="large"
-                            v-model="formValidate.mail">
+                              placeholder="电子邮件"
+                              size="large"
+                              v-model="formValidate.mail">
                             <Icon type="ios-at-outline" slot="prepend"></Icon>
                           </Input>
                         </FormItem>
@@ -90,10 +90,10 @@
                       <div class="form-group">
                         <FormItem prop="password">
                           <Input
-                            type="password"
-                            v-model="formValidate.password"
-                            placeholder="您的密码"
-                            size="large">
+                              type="password"
+                              v-model="formValidate.password"
+                              placeholder="您的密码"
+                              size="large">
                             <Icon type="ios-lock-outline" slot="prepend"></Icon>
                           </Input>
                         </FormItem>
@@ -101,10 +101,10 @@
                       <div class="form-group">
                         <FormItem prop="passwordCheck">
                           <Input
-                            type="password"
-                            placeholder="确认密码"
-                            size="large"
-                            v-model="formValidate.passwordCheck"
+                              type="password"
+                              placeholder="确认密码"
+                              size="large"
+                              v-model="formValidate.passwordCheck"
                           >
                             <Icon type="ios-lock-outline" slot="prepend"></Icon>
                           </Input>
@@ -112,9 +112,9 @@
                       </div>
                       <div class="form-group">
                         <Button
-                          class="btn btn-orange sumit"
-                          @click="handleSubmit('formValidate')"
-                          >立 即 注 册</Button
+                            class="btn btn-orange sumit"
+                            @click="handleSubmit('formValidate')"
+                        >立 即 注 册</Button
                         >
                       </div>
                     </div>
@@ -123,9 +123,9 @@
               </div>
 
               <p align="right">
-                
+
                 <router-link class="btn btn-xs btn-success" to="/about"
-                  >关于我们</router-link
+                >关于我们</router-link
                 >
               </p>
             </div>
@@ -142,12 +142,12 @@
 
     <!-- modal start-->
     <div
-      class="modal fade qrcode"
-      id="myModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myModalLabel"
-      aria-hidden="true"
+        class="modal fade qrcode"
+        id="myModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+        aria-hidden="true"
     >
       <div class="modal-dialog">
         <div class="modal-content" style="margin-top:100px;">
@@ -178,9 +178,9 @@ export default {
     //邮箱验证
     const isHasEmail = (rule, value, callback) => {
       this.request
-        .httpGet(this.requestUrl.selectMail, { username: value })
+        .httpGet(this.requestUrl.selectMail, { email: value })
         .then(res => {
-          if (res.data.result === true) {
+          if (res.code === 402) {
             callback(new Error("此邮箱已被注册"));
           }
           callback();
@@ -213,7 +213,7 @@ export default {
       }
     };
     return {
-      // Day: require("../assets/images/the_sun.png"),
+      Day: require("../assets/images/the_sun.png"),
       loginFoemValidate: {
         mail: "",
         password: ""
@@ -261,7 +261,11 @@ export default {
     //获取当前时间
     var now = new Date();
     var hour = now.getHours();
-    
+    if (hour < 19) {
+      this.Day = require("../assets/images/the_sun.png");
+    } else {
+      this.Day = require("../assets/images/the_moon.png");
+    }
   },
   methods: {
     //注册
@@ -270,11 +274,15 @@ export default {
         if (valid) {
           this.request
             .httpPost(this.requestUrl.userReg, {
-              username: this.formValidate.mail,
-              password: this.formValidate.password
+              email: this.formValidate.mail,
+              userPwd: this.formValidate.password
             })
             .then(res => {
-              this.$Message.success("注册成功!");
+              if (res.code === 200) {
+                this.$Message.success("注册成功!");
+              } else {
+                this.$Message.error("邮箱已存在")
+              }
             })
             .catch(err => {
               this.$Message.success("注册失败!");
@@ -288,30 +296,33 @@ export default {
     loginHandleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
-          
           this.request
             .httpPost(this.requestUrl.userLogin, {
-              username: this.loginFoemValidate.mail,
-              password: this.loginFoemValidate.password
+              email: this.loginFoemValidate.mail,
+              userPwd: this.loginFoemValidate.password
             })
             .then(res => {
-              console.log(res);
-              if (res.status === 200) {
+              if (res.code === 200) {
                 this.$Message.success("登录成功!");
                 this.$router.push({ path: "/index" });
+                var d = res.data;
                 //保存token
-                localStorage.setItem("token", "1");
+                localStorage.setItem("token", d.token);
                 //保存用户信息
-                localStorage.setItem("userInfo","1");
-                //let avatar=process.env.VUE_APP_BASE_API+"/images/"+res.userInfo[0].avatar;
+                localStorage.setItem("userInfo",JSON.stringify(d));
+                console.log(d)
+                let avatar = "https://z3.ax1x.com/2020/12/28/rIjtz9.jpg"
+                if (d.avatar != null) {
+                  avatar = process.env.VUE_APP_BASE_API+"/images/"+d.avatar;
+                }
                 //设置头像
-                //this.$store.commit('setAvatar',avatar);
+                this.$store.commit('setAvatar',avatar);
                 // //保存用户邮箱
-                localStorage.setItem("user_email", res.data.result.username);
+                // localStorage.setItem("user_email", res.userInfo[0].email);
                 // //保存用户id
-                localStorage.setItem("userId",res.data.result.id);
+                // localStorage.setItem("userId",res.userInfo[0].userId);
                 // //保存用户名
-                localStorage.setItem("userName",res.data.result.username);
+                // localStorage.setItem("userName",res.userInfo[0].userName);
               } else {
                 this.$Message.error("邮箱或密码错误!");
               }
@@ -361,12 +372,12 @@ export default {
   }
 }
 
-/* .the_sun {
+.the_sun {
   -webkit-animation: sun 5s 0s infinite ease normal none;
   position: absolute;
   top: 12%;
   left: 15%;
-} */
+}
 .loginContentWrap {
   top: 50%;
   left: 50%;
@@ -384,7 +395,6 @@ export default {
 }
 .user_login_reg_box {
   padding: 20px;
-  
 }
 .page-login-night .nav-tabs {
   border-bottom: 1px solid #227280;

@@ -5,8 +5,8 @@
         <Menu mode="horizontal" theme="dark" active-name="1">
           <div class="layout-logo">
             <img
-              src="../assets/images/site_logo.png"
-              title="HotWater Diary"
+                src="../assets/images/site_logo.png"
+                title="HotWater Diary"
             />
           </div>
           <div class="layout-nav">
@@ -36,20 +36,20 @@
       <Layout>
         <Sider hide-trigger :style="{ background: '#fff' }">
           <div class="demo-avatar">
-            <Avatar 
-              :src="$store.getters.getAvatar"
-              size="large"
+            <Avatar
+                :src="$store.getters.getAvatar"
+                size="large"
             />
           </div>
           <Menu
-            active-name="1-2"
-            theme="light"
-            width="auto"
-            :open-names="['1']"
+              active-name="1-2"
+              theme="light"
+              width="auto"
+              :open-names="['1']"
           >
             <MenuItem name="2-1" to="/userCenter">
               <Icon type="md-person" />
-              用户中心  
+              用户中心
             </MenuItem>
             <Submenu name="2">
               <template slot="title">
@@ -75,13 +75,13 @@
               </template>
               <MenuItem name="4-1" to="changePwd">密码修改</MenuItem>
             </Submenu>
-        
-            
-              <MenuItem name="5-1" @click.native="exit()">
+
+
+            <MenuItem name="5-1" @click.native="exit()">
               <Icon type="md-power" />
               安全退出
-              </MenuItem>
-       
+            </MenuItem>
+
           </Menu>
         </Sider>
         <router-view></router-view>
@@ -136,8 +136,8 @@ li:hover a{
   width: auto;
   height: auto;
   max-height: 100%;
-  max-width: 100%; 
-  
+  max-width: 100%;
+
 } */
 .layout-nav {
   width: 600px;

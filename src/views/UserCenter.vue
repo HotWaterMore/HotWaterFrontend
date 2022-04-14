@@ -79,7 +79,7 @@
         <Row>
           <Col span="16">
             <Card
-              style="width:95%;min-height:400px;"
+              style="width:95%;min-height:300px;"
               dis-hover
               :bordered="false"
             >
@@ -94,8 +94,7 @@
                   <Icon type="md-more" />
                 </Poptip>
               </a>
-              <!-- <Tabs name="1" @on-click="selectDiary"> -->
-              <Tabs name="1">
+              <Tabs name="1" @on-click="selectDiary">
                 <TabPane
                   label="上一篇日记"
                   name="1"
@@ -107,18 +106,18 @@
                     :key="index"
                   >
                     <p class="tabTitle">
-                      <span v-text="item.dTitle"></span>
+                      <span v-text="item.title"></span>
                       <span>
                         <Button
                           type="primary"
                           size="small"
-                          :to="`/diaryDetails/${item.dId}`"
+                          :to="`/diaryDetails/${item.diaryId}`"
                           >查看该日记</Button
                         >
                       </span>
                     </p>
 
-                    <p v-html="item.dContent"></p>
+                    <p v-html="item.content"></p>
                   </div>
                 </TabPane>
                 <TabPane label="最近的日记" name="5" icon="ios-clock">
@@ -127,8 +126,8 @@
                       v-for="(item, index) of diaryList"
                       :key="index"
                       extra="浏览"
-                      :title="item.dTitle"
-                      :to="`/diaryDetails/${item.dId}`"
+                      :title="item.title"
+                      :to="`/diaryDetails/${item.diaryId}`"
                     />
                   </CellGroup>
                 </TabPane>
@@ -136,16 +135,20 @@
             </Card>
           </Col>
           <Col span="8">
-            <Card style="width:100%;height:400px;" dis-hover :bordered="false">
+            <Card style="width:100%;min-height:300px;" dis-hover :bordered="false">
               <p slot="title"><Icon type="ios-cloud" />今日天气</p>
-              <!-- HotWater Dairy -->
-              <div id="weather-view-he"></div>
-
+              <!-- 多喝开水日记 -->
+<!--              <div id="weather-view-he"></div>-->
+              <div id="he-plugin-standard"></div>
               <remote-js></remote-js>
-              <!-- <remote-script
-                src="https://apip.weatherdt.com/view/static/js/r.js?v=1111"
+<!--              <remote-script-->
+<!--                src="https://apip.weatherdt.com/view/static/js/r.js?v=1111"-->
+<!--              >-->
+<!--              </remote-script>-->
+              <remote-script
+                  src="https://widget.qweather.net/standard/static/js/he-standard-common.js?v=2.0"
               >
-              </remote-script> -->
+              </remote-script>
             </Card>
           </Col>
         </Row>
@@ -179,6 +182,19 @@ export default {
       }
     }
   },
+  mounted() {
+    window.WIDGET = {
+      "CONFIG": {
+        "layout": "2",
+        "width": "300",
+        "height": "450",
+        "background": "1",
+        "dataColor": "FFFFFF",
+        "borderRadius": "3",
+        "key": "f30356ffe3fe4f539c2efdf1fc304586"
+      }
+    };
+  },
   data() {
     return {
       user_email: JSON.parse(localStorage.getItem("userInfo")).email,
@@ -198,17 +214,21 @@ export default {
       }
     };
   },
-  // created() {
-  //   this.selectDiary(1);
-  //   this.totalDinfo();
-  // },
+  created() {
+    this.selectDiary(1);
+    this.totalDinfo();
+  },
   methods: {
     selectDiary(size) {
       this.diaryQuery.pageSize = size;
       this.request
         .httpGet(this.requestUrl.selectDiary, this.diaryQuery)
         .then(res => {
-          this.diaryList = res.data;
+          if (res.code === 200) {
+            this.diaryList = res.data.diaries;
+          } else {
+            this.$Message.success('用户不存在');
+          }
         });
     },
     goDetails(id) {
@@ -220,21 +240,23 @@ export default {
         .httpGet(this.requestUrl.totalDinfo, { userId: this.diaryQuery.userId })
         .then(res => {
           var tags = [];
-          if (res.data) {
-            res.data.forEach((element, index) => {
-              tags.push(...element.dTag.split(","));
-            });
+          if (res.code === 200) {
+            if (res.data) {
+              tags = res.data.tags;
+            }
+            //计算注册时间
+            var regTime = JSON.parse(localStorage.getItem("userInfo")).regTime;
+            var startDate = Date.parse(regTime);
+            var nowTime = new Date().toLocaleDateString();
+            var endDate = Date.parse(nowTime);
+            var days = (endDate - startDate) / (1 * 24 * 60 * 60 * 1000);
+            this.totalInfo.charCount = res.data.charCount;
+            this.totalInfo.diaryCount = res.data.diaryCount;
+            this.totalInfo.tagsCount = tags.length;
+            this.totalInfo.regTime = parseInt(days);
+          } else {
+            this.$Message.error("查询用户统计信息失败")
           }
-          //计算注册时间
-          var regTime = JSON.parse(localStorage.getItem("userInfo")).regTime;
-          var startDate = Date.parse(regTime);
-          var nowTime = new Date().toLocaleDateString();
-          var endDate = Date.parse(nowTime);
-          var days = (endDate - startDate) / (1 * 24 * 60 * 60 * 1000);
-          this.totalInfo.charCount = res.charCount == null ? 0 : res.charCount;
-          this.totalInfo.diaryCount = res.diaryCount;
-          this.totalInfo.tagsCount = tags.length;
-          this.totalInfo.regTime = days;
         });
     }
   }
@@ -246,6 +268,10 @@ iframe {
   height: 400px;
 }
 #weather-view-he{
+  width: 100% !important;
+  height: 100%;
+}
+#he-plugin-standard{
   width: 100% !important;
   height: 100%;
 }
