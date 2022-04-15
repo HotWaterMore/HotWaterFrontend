@@ -313,7 +313,7 @@ export default {
                 console.log(d)
                 let avatar = "https://z3.ax1x.com/2020/12/28/rIjtz9.jpg"
                 if (d.avatar != null) {
-                  avatar = process.env.VUE_APP_BASE_API+"/images/"+d.avatar;
+                  avatar = d.avatar;
                 }
                 //设置头像
                 this.$store.commit('setAvatar',avatar);

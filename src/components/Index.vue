@@ -94,7 +94,7 @@ export default {
   components: {},
   data() {
     return {
-      avatar:process.env.VUE_APP_BASE_API+"/images/"+JSON.parse(localStorage.getItem("userInfo")).avatar
+      avatar: JSON.parse(localStorage.getItem("userInfo")).avatar
     };
   },
   mounted() {

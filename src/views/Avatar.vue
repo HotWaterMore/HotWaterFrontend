@@ -67,6 +67,7 @@
 
 <script>
 import { userInfo } from 'os';
+import router from "../router";
 export default {
   components: {},
   data() {
@@ -87,20 +88,6 @@ export default {
     };
   },
   methods: {
-    //  handleBeforeUpload (file) { /*上传前确定上传地址*/
-    //             let researchId = this.activeUploadId;
-    //             this.uploadUrl = process.env.VUE_APP_BASE_API+requestUrl.avatar;
-    //             this.uploadData = {
-    //                 role: patient,
-    //                 abc: file
-    //             };
-    //             let promise = new Promise((resolve) => {
-    //                 this.$nextTick(function () {
-    //                     resolve(true);
-    //                 });
-    //             });
-    //             return promise; //通过返回一个promis对象解决
-    //         },
     handleView(name) {
       this.imgName = name;
       this.visible = true;
@@ -113,11 +100,11 @@ export default {
       // file.url =
       //   "https://o5wwk8baw.qnssl.com/7eb99afb9d5f317c912f08b5212fd69a/avatar";
       // file.name = "7eb99afb9d5f317c912f08b5212fd69a";
-      let avatar=process.env.VUE_APP_BASE_API+"/images/"+res.avatar;
-      this.avatar=avatar;
-      this.url=avatar;
-      this.$store.commit('setAvatar',avatar);
-      file.url =avatar;
+      this.avatar = res.data;
+      this.url = res.data;
+      this.$store.commit('setAvatar',res.data);
+      file.url = res.data;
+      // location.reload();
     },
     handleFormatError(file) {
       this.$Notice.warning({
@@ -135,7 +122,7 @@ export default {
       });
     },
     handleBeforeUpload() {
-      const check = this.uploadList.length <1;
+      const check = this.uploadList.length < 2;
       if (!check) {
         this.$Notice.warning({
           title: "最多上传一张图片."
